@@ -6,15 +6,26 @@ import '@sismo-core/sismo-connect-solidity/contracts/libs/SismoLib.sol';
 
 contract Vlance is SismoConnect{
     address payable public owner;
-    event verifiedGithubContributor(address contributor);
 
+    //for sismo verification
+    event verifiedGithubContributor(address contributor);
     bytes16 public constant APP_ID = 0xc8296b55ab40894b58d094e76248898b;
     bytes16 public constant GROUP_ID = 0xfb20933ed4261d329255c10c64c53ff0;
 
+    //for adding work experience
+    mapping (address => string) public workExperience;
 
     constructor() SismoConnect(buildConfig(APP_ID, false)) payable {
-        // isImpersonationMode is set to true
+        // isImpersonationMode is set to false
         owner = payable(msg.sender);
+    }
+
+    function addWorkExperience(string memory experience) public {
+        workExperience[msg.sender] = experience;
+    }
+
+    function getWorkExperience(address user) public view returns (string memory) {
+        return workExperience[user];
     }
 
     

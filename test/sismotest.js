@@ -1,7 +1,6 @@
 const { expect } = require("chai");
 const hre = require("hardhat");
 
-
 describe("SismoConnect", function () {
 
   describe("Deployment", function () {
@@ -34,6 +33,16 @@ describe("SismoConnect", function () {
 
       console.log(tx)
     });
+
+    it("add work experience", async function () {
+
+      const tx = await contract.addWorkExperience("KFD, Software Engineer, 2015-2023");
+
+      console.log(tx)
+
+    });
+
+
   });
 
 
