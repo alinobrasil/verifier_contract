@@ -20,13 +20,9 @@ contract Vlance is SismoConnect{
     
     function checkSismoGithub(bytes memory sismoResponse) public returns (uint256) {
         
-
-
         AuthRequest[] memory auths = new AuthRequest[](2);
         auths[0] = buildAuth({authType: AuthType.VAULT});
         auths[1] = buildAuth({authType: AuthType.GITHUB});
-
-
 
         ClaimRequest[] memory claims = new ClaimRequest[](1);
         claims[0] = buildClaim({
@@ -47,6 +43,8 @@ contract Vlance is SismoConnect{
 
         uint256 userId = SismoConnectHelper.getUserId(result, AuthType.VAULT);
         //AuthType.GITHUB
+
+        emit verifiedGithubContributor(msg.sender);
 
     
         return userId;
